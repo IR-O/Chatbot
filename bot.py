@@ -13,7 +13,7 @@ app = Client(
 @app.on_message(filters.text & ~filters.command("start"))
 async def chat_handler(client, message):
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-    reply = get_ai_reply(message.text)
+    reply = get_iro_reply(message.text)
     await message.reply_text(reply)
 
 print("🤖 Desi Chatbot running...")
