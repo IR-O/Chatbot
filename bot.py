@@ -10,10 +10,21 @@ app = Client(
     bot_token=BOT_TOKEN
 )
 
-@app.on_message(filters.text & ~filters.command("start"))
+# start command
+@app.on_message(filters.command("start"))
+async def start_handler(client, message):
+    await message.reply_text("🤖 I am IRO chatbot. Kya scene hai bhai? 😄")
+
+# chat handler
+@app.on_message(filters.text & ~filters.regex("^/"))
 async def chat_handler(client, message):
+
+    # typing animation
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+
+    # AI reply
     reply = get_iro_reply(message.text)
+
     await message.reply_text(reply)
 
 print("🤖 Desi Chatbot running...")
