@@ -1,0 +1,25 @@
+{
+  "name": "Desi Telegram AI Chatbot",
+  "description": "Casual Hinglish Telegram chatbot powered by StdGPT API",
+  "repository": "https://github.com/IR-O/Chatbot",
+  "keywords": ["telegram", "chatbot", "ai", "pyrogram"],
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Telegram API HASH",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Telegram Bot Token",
+      "required": true
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1
+    }
+  }
+}
