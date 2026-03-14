@@ -10,7 +10,7 @@ app = Client(
     bot_token=BOT_TOKEN
 )
 
-@app.on_message(filters.text & ~filters.command())
+@app.on_message(filters.text & ~filters.command("start")
 async def chat_handler(client, message):
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
     reply = get_ai_reply(message.text)
