@@ -1,8 +1,10 @@
 import requests
+import urllib.parse
 
 def get_iro_reply(user_text):
     try:
-        url = f"https://stdgpt.vercel.app/?text={user_text}"
+        text = urllib.parse.quote(user_text)
+        url = f"https://stdgpt.vercel.app/?text={text}"
         response = requests.get(url, timeout=60)
 
         if response.status_code == 200:
