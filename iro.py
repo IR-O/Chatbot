@@ -4,37 +4,51 @@ import urllib.parse
 def get_iro_reply(user_text):
     try:
         prompt = f"""
-Tu Telegram ka ek mast dost hai.
-Tu casual Hinglish me baat karta hai.
+Tu Telegram ka ek Indian dost hai.
 
-Rules:
-- Reply short rakho
-- AI jaisa mat bol
-- Dost jaisa bol
-- Hinglish use karo
-- Slang use karo (abe, bhai, scene kya hai, kya kar raha, etc)
-- Emoji kabhi kabhi use karo
+Style:
+- Casual Hinglish
+- Short reply (max 1-2 lines)
+- Zyada explanation mat de
+- Dost jaisa bol (abe, bhai, acha, arey etc)
+- Natural lagna chahiye
+- Kabhi kabhi emoji use kar 😄😜
 
-Example tone:
+Examples:
+
 User: Hello
 Bot: Oye hello bhai 😄 kya scene hai?
 
-User: Kya kar raha
-Bot: Bas timepass chal raha 😜 tu bata kya kar raha hai?
+User: Reels dekh raha
+Bot: Sahi hai bhai 😜 timepass chal raha
 
-User: {user_text}
+User: Pagal hai kya
+Bot: Abe thoda sa 😝 tu bata kya hua
+
+User message: {user_text}
+
+Reply like a real Telegram friend.
 """
 
         text = urllib.parse.quote(prompt)
         url = f"https://stdgpt.vercel.app/?text={text}"
 
-        response = requests.get(url, timeout=60)
+        response = requests.get(url, timeout=25)
 
         if response.status_code == 200:
             data = response.json()
-            return data.get("reply", "Samajh nahi aaya bhai.")
+            reply = data.get("reply", "Samajh nahi aaya bhai.")
+
+            # extra safety: reply length trim
+            if len(reply) > 120:
+                reply = reply[:120]
+
+            return reply
+
         else:
             return "Server thoda busy hai bhai."
 
     except Exception as e:
         return f"Error: {e}"
+
+ab ye bata fast reply ke liye kon konsi file me change karega 
