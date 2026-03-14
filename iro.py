@@ -50,5 +50,3 @@ Reply like a real Telegram friend.
 
     except Exception as e:
         return f"Error: {e}"
-
-ab ye bata fast reply ke liye kon konsi file me change karega 
