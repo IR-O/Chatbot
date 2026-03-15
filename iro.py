@@ -33,7 +33,7 @@ Reply like a real Telegram friend.
         text = urllib.parse.quote(prompt)
         url = f"https://stdgpt.vercel.app/?text={text}"
 
-        response = requests.get(url, timeout=25)
+        response = requests.get(url, timeout=15)
 
         if response.status_code == 200:
             data = response.json()
